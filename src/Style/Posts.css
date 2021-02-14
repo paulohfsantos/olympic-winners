@@ -1,6 +1,9 @@
 table {
     margin: 0 auto;
 }
+table th {
+    padding: 0 10px;
+}
 table, th, td {
     border: 1px solid #333;
 }

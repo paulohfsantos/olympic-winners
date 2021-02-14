@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
+import '../Style/Pagination.css'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -10,19 +11,24 @@ const useStyles = makeStyles((theme) => ({
     },
   }))
 
-const PaginationItem = ({ postsPerPage, totalPosts, paginate }) => {
+const PaginationItem = (props) => {
 
     const pageNumbers = []
-    for(let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++ ){
+    for(let i = 1; i <= Math.ceil(props.totalPosts / props.postsPerPage); i++ ){
         pageNumbers.push(i)
     }
 
     const classes = useStyles()
 
+    function changePage(event) {
+        const pageNumber = Number(event.target.textContent)
+        props.changePage(pageNumber)
+    }
+
     return (
         <>
             <div className={classes.root}>
-                <Pagination onClick={()=> paginate()} count={totalPosts} />
+                <Pagination count={Math.ceil(props.totalPosts / props.postsPerPage)} onChange={changePage} />
             </div>
         </>
     )

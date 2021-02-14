@@ -10,7 +10,7 @@ function App() {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
-    const [postsPerPage, setPostsPerPage] = useState(30)
+    const [postsPerPage] = useState(30)
 
     useEffect(()=> {
         const fetchPosts = async () => {
@@ -22,22 +22,17 @@ function App() {
         fetchPosts()
     },[])
 
-    //console.log(posts)
-
     //Get current post
     const lastPage = currentPage * postsPerPage
     const firstPage = lastPage - postsPerPage
     const getCurrentPage = posts.slice(firstPage, lastPage)
-
-    //change page
-    const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     return (
         <div className="App">
             <h2>Olympic Winners</h2>
 
             <Posts posts={getCurrentPage} loading={loading} />
-            <PaginationItem postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} />
+            <PaginationItem postsPerPage={postsPerPage} totalPosts={posts.length} changePage={setCurrentPage} />
         </div>
     )
 }
