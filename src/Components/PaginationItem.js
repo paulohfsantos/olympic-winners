@@ -28,7 +28,11 @@ const PaginationItem = (props) => {
     return (
         <>
             <div className={classes.root}>
-                <Pagination count={Math.ceil(props.totalPosts / props.postsPerPage)} onChange={changePage} />
+                <Pagination 
+                count={Math.ceil(props.totalPosts / props.postsPerPage)} 
+                onChange={changePage} 
+                hidePrevButton 
+                hideNextButton />
             </div>
         </>
     )
